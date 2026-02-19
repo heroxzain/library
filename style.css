@@ -1,5 +1,5 @@
 * {
-    /* border: 2px solid red; */
+    border: 2px solid red;
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
@@ -39,6 +39,29 @@ footer {
 main {
     flex: 1;
     text-align: center;
+    width: clamp(200px, 100%, 1200px); /* temporary */
+    margin: auto;
+    padding: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem 1rem;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: max-content;
+}
+
+.card {
+    padding: 1rem;
+    display: grid;
+    gap: 0.5rem;
+    text-align: left;
+    width: min(100%, 400px);
+    position: relative;
+}
+
+#cross {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1rem;
+    border-radius: 50%;
 }
