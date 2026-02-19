@@ -8,12 +8,25 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <header>
+        <h1 class="logo special">Library</h1>
+        <button class="theme"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>brightness-6</title><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg></span></button>
+        <button class="add"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button>
+    </header>
+    <main>
+        No Books Added Yet        
+    </main>
+    <footer><span>Made with ❤️ by <span class="special">HEROxZAIN</span> for <span class="special">The Odin Project</span></span></footer>
 <!-- 
-    create a card and display each book in grid of cards
-        create a layout
+    create basic layout
+            logo text (library) and add button (spaced between) (optional toggle theme button)
+        main 
+            grid with a max width (around 900 to 1200 px)
+            fit max 3 to 4 cards per row (depending on the look) using autofit or autofill
+    create cards with light and dark theme
+        display books with cards using js (loop over library)
     option to add 
-        create a form
+        create a form (a popup form or a hidden display)
     option to remove
         add a cross button on top right of each card that removes the card with js
         use document.removeElement or removeChild to remove card

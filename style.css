@@ -1,0 +1,44 @@
+* {
+    /* border: 2px solid red; */
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem 3rem;
+    gap: 3rem;
+}
+
+.logo {
+    margin-right: auto;
+}
+
+.theme, .add {
+    width: 30px;
+    border-radius: 50%;
+    border: 0px solid;
+    background-color: white;
+}
+
+footer {
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+}
+
+main {
+    flex: 1;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
