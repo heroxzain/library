@@ -102,7 +102,7 @@ let frmpages = document.querySelector("#pages");
 let frmstatus = document.querySelector("#status");
 let confirm = document.querySelector("#confirm");
 confirm.addEventListener("click", (e) => {
-    let a = frmtitle.value, b = frmpages.value, c = frmpages.value;
+    let a = frmtitle.value, b = frmauthor.value, c = frmpages.value;
     if (!(a == "" || b == "" || c == "")) {
         e.preventDefault();
         let book = new Book();

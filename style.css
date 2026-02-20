@@ -7,19 +7,24 @@
 }
 
 * {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
 }
 
 body {
+    background-color: #fbfbfb;
     height: 100vh;
     display: flex;
     flex-direction: column;
+    font-family: 'Inter', sans-serif; 
+    line-height: 1.6; 
+    color: #333;
 }
 
 header {
+    background-color: #fff;
     display: flex;
     justify-content: flex-end;
     align-items: center;
