@@ -7,7 +7,7 @@
 }
 
 * {
-    /* border: 2px solid red; */
+    border: 2px solid red;
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
@@ -66,14 +66,30 @@ main {
     position: relative;
 }
 
-#cross {
+#cross, #cancel {
     position: absolute;
     right: 1rem;
     top: 1rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     border-radius: 50%;
 }
 
 .card.toggle {
     background-color: pink;
+}
+
+dialog {
+    margin: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+    position: relative;
+}
+
+input:not([type='checkbox']) {
+    display: block;
 }

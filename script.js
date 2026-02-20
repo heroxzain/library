@@ -26,12 +26,16 @@ book1.addBookToLibrary("SE", "zain", 100, true);
 book2.addBookToLibrary("SDA", "mataiba", 200, false);
 book3.addBookToLibrary("SE", "zain", 100, true);
 book4.addBookToLibrary("SDA", "mataiba", 200, false);
-console.log(myLibrary);
+// console.log(myLibrary);
 //
 
 let main = document.querySelector("main");
 
 function display() {
+    let mainChildren = document.querySelectorAll("main > *");
+    mainChildren.forEach(child => {
+        main.removeChild(child);
+    });
     if (myLibrary.length === 0) {
         let card = document.createElement("div");
         let h2 = document.createElement("h2");
@@ -53,11 +57,13 @@ function display() {
         let btn = document.createElement("button");
         let cross = document.createElement("button");
         cross.textContent = "X";
+        cross.setAttribute("title", "Delete");
         cross.setAttribute("id", "cross");
         cross.setAttribute("data-identifier", book.id);
         cross.addEventListener("click", () => {
             myLibrary.splice(index, 1);
             main.removeChild(card);
+            display();
         });
         title.textContent = book.title;
         author.textContent = "Author: " + book.author;
@@ -76,13 +82,41 @@ function display() {
         main.appendChild(card);
     });
 }
-
 display();
 
 function setTheme() {
     let root = document.documentElement;
     root.className = ((root.className === "dark") ? "light" : "dark");
 }
-
 document.querySelector(".theme").addEventListener("click", setTheme);
 
+let NewBook = document.querySelector("#NewBook");
+let add = document.querySelector(".add");
+add.addEventListener("click", () => {
+    NewBook.showModal();
+});
+
+let frmtitle = document.querySelector("#title");
+let frmauthor = document.querySelector("#author");
+let frmpages = document.querySelector("#pages");
+let frmstatus = document.querySelector("#status");
+let confirm = document.querySelector("#confirm");
+confirm.addEventListener("click", (e) => {
+    let a = frmtitle.value, b = frmpages.value, c = frmpages.value;
+    if (!(a == "" || b == "" || c == "")) {
+        e.preventDefault();
+        let book = new Book();
+        book.addBookToLibrary(a, b, c, frmstatus.checked);
+        frmtitle.value = "";
+        frmauthor.value = "";
+        frmpages.value = "";
+        display();
+        NewBook.close();
+    }
+});
+
+let cancel = document.querySelector("#cancel");
+cancel.addEventListener("click", (e) => {
+    e.preventDefault();
+    NewBook.close()
+});

@@ -10,12 +10,31 @@
 <body>
     <header>
         <h1 class="logo special">Library</h1>
-        <button class="theme"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>brightness-6</title><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg></span></button>
-        <button class="add"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>plus</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button>
+        <button class="theme"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Toggle-Theme</title><path d="M12,18V6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,15.31L23.31,12L20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31Z" /></svg></span></button>
+        <button class="add"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Add Book</title><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/></svg></span></button>
     </header>
+    <dialog id="NewBook">
+        <form>
+            <button title="Close" id="cancel" formmethod="dialog">X</button>
+            <h2>New Book</h2>
+            <label for="title">Title: 
+                <input type="text" name="author" id="title" required>
+            </label>
+            <label for="author">Author: 
+                <input type="text" name="author" id="author" required>
+            </label>
+            <label for="pages">Pages: 
+                <input type="text" name="pages" id="pages" required>
+            </label>
+            <label for="status">Have You Read?
+                <input type="checkbox" name="status" id="status" value="read">
+            </label>
+            <button id="confirm" type="submit">Add Book</button>
+        </form>
+    </dialog>
     <main>
         <!-- <div class="card toggle">
-            <button id="cross" data-identifier="">X</button>
+            <button title="Delete" id="cross" data-identifier="">X</button>
             <h2>Title</h2>
             <div>Author</div>
             <div>Pages</div>
