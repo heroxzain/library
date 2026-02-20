@@ -17,18 +17,6 @@ Book.prototype.addBookToLibrary = function(title, author, pages, status) {
     myLibrary.push(this);
 }
 
-// Remove this useless part
-let book1 = new Book();
-let book2 = new Book();
-let book3 = new Book();
-let book4 = new Book();
-book1.addBookToLibrary("SE", "zain", 100, true);
-book2.addBookToLibrary("SDA", "mataiba", 200, false);
-book3.addBookToLibrary("SE", "zain", 100, true);
-book4.addBookToLibrary("SDA", "mataiba", 200, false);
-// console.log(myLibrary);
-//
-
 let main = document.querySelector("main");
 
 function display() {
