@@ -27,6 +27,7 @@ book2.addBookToLibrary("SDA", "mataiba", 200, false);
 book3.addBookToLibrary("SE", "zain", 100, true);
 book4.addBookToLibrary("SDA", "mataiba", 200, false);
 console.log(myLibrary);
+//
 
 let main = document.querySelector("main");
 
@@ -56,8 +57,7 @@ function display() {
         cross.setAttribute("data-identifier", book.id);
         cross.addEventListener("click", () => {
             myLibrary.splice(index, 1);
-            main.textContent = "";
-            display();
+            main.removeChild(card);
         });
         title.textContent = book.title;
         author.textContent = "Author: " + book.author;
@@ -66,7 +66,7 @@ function display() {
         btn.addEventListener("click", () => {
             book.status = book.status ? false : true;
             btn.textContent = book.status ? "Read" : "UnRead";
-            // toggle theme of card
+            card.classList.toggle("toggle");
         });
         card.appendChild(cross);
         card.appendChild(title);
@@ -78,3 +78,11 @@ function display() {
 }
 
 display();
+
+function setTheme() {
+    let root = document.documentElement;
+    root.className = ((root.className === "dark") ? "light" : "dark");
+}
+
+document.querySelector(".theme").addEventListener("click", setTheme);
+
