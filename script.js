@@ -1,4 +1,21 @@
-let myLibrary = [];
+class Library {
+    constructor(){
+        this.myLibrary = [];
+    }
+
+    addBook(title, author, pages, status) {
+        let book = new Book(title, author, pages, status);
+        this.myLibrary.push(book);
+    }
+
+    removeBook(id) {
+        this.myLibrary = this.myLibrary.filter(book => book.id !== id);
+    }
+
+    isEmpty() {
+        return this.myLibrary.length === 0;
+    }
+}
 
 class Book {
     constructor(title, author, pages, status) {
@@ -8,59 +25,55 @@ class Book {
         this.pages = pages;
         this.status = status;
     }
+
     toggleRead() {
         this.status = !this.status;
     }
 }
 
-function addBookToLibrary(title, author, pages, status) {
-    let book = new Book(title, author, pages, status);
-    myLibrary.push(book);
-}
+class LibraryUI {
+    constructor(library) {
+        this.library = library;
+        this.main = document.querySelector("main");
+    }
 
-let main = document.querySelector("main");
+    clearMain() {
+        this.main.innerHTML = "";
+    }
 
-function clearMain() {
-    let mainChildren = document.querySelectorAll("main > *");
-    mainChildren.forEach(child => {
-        main.removeChild(child);
-    });
-}
-
-function displayEmptyState() {
+    displayEmptyState() {
         const card = document.createElement("div");
         card.classList.add("card");
         card.style.textAlign = "center";
- 
+
         const h2 = document.createElement("h2");
         h2.textContent = "No Books Added Yet";
 
         const message = document.createElement("p");
         message.textContent = "Please press the + button to add books";
 
-        card.appendChild(h2);
-        card.appendChild(message);
-        main.appendChild(card);
-}
+        card.append(h2, message);
+        this.main.appendChild(card);
+    }
 
-function createDeleteButton(id) {
-    const btn = document.createElement("button");
-    btn.textContent = "X";
-    btn.id = "cross";
-    btn.title = "Delete";
+    createDeleteButton(id) {
+        const btn = document.createElement("button");
+        btn.id = "cross";
+        btn.title = "Delete";
+        btn.textContent = "X";
 
-    btn.addEventListener("click", () => {
-        myLibrary = myLibrary.filter(book => book.id !== id);
-        display();
-    });
+        btn.addEventListener("click", () => {
+            this.library.removeBook(id);
+            this.display();
+        });
 
-    return btn;
-}
+        return btn;
+    }
 
-function createStatusButton(book, card) {
+    createStatusButton(book, card) {
         const btn = document.createElement("button");
         btn.textContent = book.status ? "Read" : "UnRead";
-        
+
         btn.addEventListener("click", () => {
             book.toggleRead();
             btn.textContent = book.status ? "Read" : "UnRead";
@@ -68,9 +81,9 @@ function createStatusButton(book, card) {
         });
 
         return btn;
-}
+    }
 
-function createBookCard(book) {
+    createBookCard(book) {
         const card = document.createElement("div");
         card.classList.add("card");
         if (book.status) card.classList.add("toggle");
@@ -83,30 +96,31 @@ function createBookCard(book) {
 
         const pages = document.createElement("div");
         pages.textContent = "Pages: " + book.pages;
-        
-        const deleteBtn = createDeleteButton(book.id);
-        const statusBtn = createStatusButton(book, card);
 
-        card.appendChild(deleteBtn);
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(pages);
-        card.appendChild(statusBtn);
+        card.append(
+            this.createDeleteButton(book.id),
+            title,
+            author,
+            pages,
+            this.createStatusButton(book, card)
+        );
+
         return card;
-}
+    }
 
-function display() {
-    clearMain();
-    if (myLibrary.length === 0) {
-        displayEmptyState();
-        return;
-    } else 
-        myLibrary.forEach((book) => {
-            const card = createBookCard(book);
-            main.appendChild(card);
+    display() {
+        this.clearMain();
+
+        if (this.library.isEmpty()) {
+            this.displayEmptyState();
+            return;
+        }
+
+        this.library.myLibrary.forEach(book => {
+            this.main.appendChild(this.createBookCard(book));
         });
+    }
 }
-display();
 
 function setTheme() {
     let root = document.documentElement;
@@ -129,11 +143,11 @@ confirm.addEventListener("click", (e) => {
     let a = frmtitle.value, b = frmauthor.value, c = frmpages.value;
     if (!(a == "" || b == "" || c == "")) {
         e.preventDefault();
-        addBookToLibrary(a, b, c, frmstatus.checked);
+        library.addBook(a, b, c, frmstatus.checked);
         frmtitle.value = "";
         frmauthor.value = "";
         frmpages.value = "";
-        display();
+        ui.display();
         NewBook.close();
     }
 });
@@ -143,3 +157,7 @@ cancel.addEventListener("click", (e) => {
     e.preventDefault();
     NewBook.close()
 });
+
+const library = new Library();
+const ui = new LibraryUI(library);
+ui.display();
