@@ -1,15 +1,16 @@
 let myLibrary = [];
 
-function Book(title, author, pages, status) {
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-}
-
-Book.prototype.toggleRead = function () {
-    this.status = !this.status;
+class Book {
+    constructor(title, author, pages, status) {
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.status = status;
+    }
+    toggleRead() {
+        this.status = !this.status;
+    }
 }
 
 function addBookToLibrary(title, author, pages, status) {
@@ -93,8 +94,6 @@ function createBookCard(book) {
         card.appendChild(statusBtn);
         return card;
 }
-
-
 
 function display() {
     clearMain();
